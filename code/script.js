@@ -1,21 +1,33 @@
 // Variables that point to selected DOM elements
 const chat = document.getElementById("chat");
 
+const formInput = document.getElementById("input-form");
+const textInput = document.getElementById("text-input");
+const sendBtn = document.getElementById("send-btn");
+const inputWrapper = document.getElementById("input-wrapper");
+
 // If you need any global variables that you can use across different functions, declare them here:
 
 // Declare your functions after this comment
 
-// This function will add a chat bubble in the correct place based on who the sender is
-const showMessage = (message, sender) => {
-  // the if statement checks if the sender is 'user' and if that's the case it inserts an html senction inside the chat with the posted message
+const botReply = (msg) => {
+  showMessage(msg, "bot");
+};
 
+const userReply = (msg) => {
+  showMessage(msg, "user");
+};
+
+// This function will add a chat bubble in the correct place based on who the sender is
+function showMessage(message, sender) {
+  // the if statement checks if the sender is 'user' and if that's the case it inserts an html senction inside the chat with the posted message
   if (sender === "user") {
     chat.innerHTML += `
       <section class="user-msg">
         <div class="bubble user-bubble">
           <p>${message}</p>
         </div>
-        <img src="assets/user-h.png" alt="User" />  
+        <img src="assets/user-h.png" alt="User" />
       </section>
     `;
     // the else if statement checks if the sender is a bot and if that's the case it inserts an html senction inside the chat with the posted message
@@ -31,21 +43,52 @@ const showMessage = (message, sender) => {
   }
   // This little thing makes the chat scroll to the last message when there are too many to be shown in the chat box
   chat.scrollTop = chat.scrollHeight;
+}
+
+// Bot greeting once you open the page
+const greetUser = () => {
+  botReply("So... Who do we have here?");
 };
 
-// Starts here
-const greetUser = () => {
-  // here we call the function showMessage, that we declared earlier with the argument "Hello there, What's your name?" for message, and the argument "bot" for sender
-  showMessage("Hello there, What's your name?", "bot");
-  // Just to check it out, change 'bot' to 'user' here 👆
+const nextQuestion = (message) => {
+  if (questionNumber === 1) {
+    userReply(message);
+    formMessageBox.value = "";
+    setTimeout(() => question2(message), chatDelay);
+  } else if (questionNumber === 2) {
+    userReply(firstToUpperCase(message));
+    formMessageBox.value = "";
+    setTimeout(() => question3(message), chatDelay);
+  } else if (questionNumber === 3) {
+    userReply(firstToUpperCase(message));
+    formMessageBox.value = "";
+    setTimeout(() => question4(message), chatDelay);
+  }
 };
+
+// Bot welcoming you to Hogwarts once you sumbit your name
+
+formInput.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const userName = textInput.value;
+  userReply(userName);
+  botReply(`Welcome ${userName} to Hogwarts! Now...
+            In order to sort you into a house you have to answer a few questions...
+            First, what is your favourite colour?`);
+  textInput.value = "";
+});
+
+//The bot will give you four colours to choose from
+
+//You pick a colour by clicking a button
+
+//Next, the bot will ask your favourite animal
+
+//You pick an animal by clicking buttons with emojis (maybe)
+
+//The bot will choose a house for you and say "Good luck!"
 
 // Set up your eventlisteners here
 
-// When website loaded, chatbot asks first question.
-// normally we would invoke a function like this:
-// greeting()
-// But if we want to add a little delay to it, we can wrap it in a setTimeout:
-// setTimeout(functionName, timeToWaitInMilliSeconds)
-// This means the greeting function will be called one second after the website is loaded.
-setTimeout(greetUser, 1000);
+//Delay the bot answers.
+setTimeout(greetUser, 500);
