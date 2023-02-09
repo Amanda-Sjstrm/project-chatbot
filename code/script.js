@@ -31,6 +31,7 @@ const handleInput = (message) => {
     setTimeout(goodBye, 1500);
   }
 };
+
 // This function will add a chat bubble in the correct place based on who the sender is
 const showMessage = (message, sender) => {
   if (sender === "user") {
@@ -136,10 +137,10 @@ const houseStatement = (colour) => {
 
   //You will love your new house
   inputWrapper.innerHTML = `
-<button id="bookButton">Yay!</button>
+<button id="yayButton">Yay!</button>
 `;
   document
-    .getElementById("bookButton")
+    .getElementById("yayButton")
     .addEventListener("click", () =>
       handleInput("I can't waint to become the gratest witch in the world!")
     );
