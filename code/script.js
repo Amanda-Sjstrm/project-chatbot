@@ -22,13 +22,13 @@ const userAnswer = (inputMessage) => {
 const handleInput = (message) => {
   if (questionStep === 2) {
     userAnswer(message);
-    setTimeout(() => moreServices(message), 800);
+    setTimeout(() => colourOptions(message), 800);
   } else if (questionStep === 3) {
     userAnswer(message);
-    setTimeout(() => priceInformation(message), 800);
+    setTimeout(() => houseStatement(message), 1500);
   } else {
     userAnswer(message);
-    setTimeout(goodBye, 800);
+    setTimeout(goodBye, 1500);
   }
 };
 // This function will add a chat bubble in the correct place based on who the sender is
@@ -69,64 +69,69 @@ form.addEventListener("submit", (event) => {
   userAnswer(`${name}`);
   // This will keep the input box empty after user clicks send
   nameInput.value = "";
-  setTimeout(() => serviceOptions(name), 800);
+  setTimeout(() => animalOptions(name), 1000);
 });
 
-// 2nd Bot message - Bot welcomes you to Hogwarts and asks your favourite colour
-const serviceOptions = (name) => {
+// 2nd Bot message - Bot welcomes you to Hogwarts and asks your favourite animal
+const animalOptions = (name) => {
   questionStep++;
-  botAnswer(`Welcome ${name} to Hogwarts!
-  In order to sort you into a house you have to answer a few questions...
-  First, what is your favourite colour?`);
+  botAnswer(`Welcome ${name} to Hogwarts!`);
+  setTimeout(
+    () =>
+      botAnswer(`In order to sort you into a house you have to answer a few questions...
+  First, what is your favourite animal?`),
+    1000
+  );
   inputWrapper.innerHTML = `
-    <button id="redButton">Red</button>
-    <button id="greenButton">Green</button>
-    <button id="yellowButton">Yellow</button>
-    <button id="blueButton">Blue</button>
+    <button id="lionButton">Lion 🦁</button>
+    <button id="snakeButton">Snake 🐍</button>
+    <button id="badgerButton">Badger 🦡</button>
+    <button id="eagleButton">Eagle 🦅</button>
     `;
-  document.getElementById("redButton").addEventListener("click", () => {
-    type = "Red";
-    handleInput("Red");
+  document.getElementById("lionButton").addEventListener("click", () => {
+    type = "lion";
+    handleInput("Lion!");
   });
-  document.getElementById("greenButton").addEventListener("click", () => {
-    type = "Green";
-    handleInput("Green");
+  document.getElementById("snakeButton").addEventListener("click", () => {
+    type = "snake";
+    handleInput("Snake!");
   });
-  document.getElementById("yellowButton").addEventListener("click", () => {
-    type = "Yellow";
-    handleInput("Yellow");
+  document.getElementById("badgerButton").addEventListener("click", () => {
+    type = "snake";
+    handleInput("Badger!");
   });
-  document.getElementById("blueButton").addEventListener("click", () => {
-    type = "Blue";
-    handleInput("Blue");
+  document.getElementById("eagleButton").addEventListener("click", () => {
+    type = "eagle";
+    handleInput("Eagle!");
   });
 };
 
-//3rd Bot message - Bot asks you to choose favourite animal
-const moreServices = (type) => {
+//3rd Bot message - Bot asks you to choose favourite colour
+const colourOptions = (type) => {
   questionStep++;
   botAnswer(
-    `Interesting! And could you tell me what is your favourite animal?`
+    `Interesting! And could you tell me what is your favourite colour?`
   );
   inputWrapper.innerHTML = `
   <select id = 'select'>
-  <option value='' selected disabled> Choose animal </option>
-  <option value='Lion!'>Lion</option>
-  <option value='Snake!'>Snake</option>
-  <option value='Badger!'>Badger</option>
-  <option value='Eagle!'>Eagle</option>
+  <option value='' selected disabled> Choose colour </option>
+  <option value='Red'>Red</option>
+  <option value='Green'>Green</option>
+  <option value='Yellow'>Yellow</option>
+  <option value='Blue'>Blue</option>
   </select> `;
   const select = document.getElementById("select");
   select.addEventListener("change", () => handleInput(select.value));
 };
 
 //4th Bot message - Bot will place you in Hogwarts house
-const priceInformation = (service) => {
+const houseStatement = (colour) => {
   questionStep++;
-  if (service === "Snake!") {
+  if (colour === "Green") {
     botAnswer(`SLYTHERIN!`);
   } else {
-    botAnswer(`Hmm... Tough call... Better put you in... SLYTHERIN!`);
+    botAnswer(`Hmm... Tough call... Better put you in...`);
+    setTimeout(() => botAnswer(`SLYTHERIN!`), 2000);
   }
 
   //You will love your new house
@@ -136,16 +141,14 @@ const priceInformation = (service) => {
   document
     .getElementById("bookButton")
     .addEventListener("click", () =>
-      handleInput(
-        "I cant waint to become the gratest wizard/witch in the world!"
-      )
+      handleInput("I can't waint to become the gratest witch in the world!")
     );
 };
 
 // 5 th bot message - Bot will wish you good luck and say good bye
 function goodBye() {
   botAnswer(`Have fun with your new slytherin friends!`);
-  botAnswer(`And watch out for nargles...`);
+  setTimeout(() => botAnswer(`And watch out for nargles...`), 1200);
   // Below clears the option to click button after once selected.
   inputWrapper.innerHTML = ``;
 }
