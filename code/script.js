@@ -73,7 +73,7 @@ form.addEventListener("submit", (event) => {
   setTimeout(() => animalOptions(name), 1000);
 });
 
-// 2nd Bot message - Bot welcomes you to Hogwarts and asks your favourite animal
+// 2 - Bot welcomes you to Hogwarts and asks your favourite animal
 const animalOptions = (name) => {
   questionStep++;
   botAnswer(`Welcome ${name} to Hogwarts!`);
@@ -107,11 +107,11 @@ const animalOptions = (name) => {
   });
 };
 
-//3rd Bot message - Bot asks you to choose favourite colour
+//3 - Bot asks you to choose favourite colour
 const colourOptions = (type) => {
   questionStep++;
   botAnswer(
-    `Interesting! And could you tell me what is your favourite colour?`
+    `Interesting! And could you tell me what your favourite colour is?`
   );
   inputWrapper.innerHTML = `
   <select id = 'select'>
@@ -125,7 +125,7 @@ const colourOptions = (type) => {
   select.addEventListener("change", () => handleInput(select.value));
 };
 
-//4th Bot message - Bot will place you in Hogwarts house
+//4 - Bot will place you in Hogwarts house
 const houseStatement = (colour) => {
   questionStep++;
   if (colour === "Green") {
@@ -142,11 +142,11 @@ const houseStatement = (colour) => {
   document
     .getElementById("yayButton")
     .addEventListener("click", () =>
-      handleInput("I can't waint to become the gratest witch in the world!")
+      handleInput("I can't wait to become the gratest witch in the world!")
     );
 };
 
-// 5 th bot message - Bot will wish you good luck and say good bye
+// 5 - Bot will wish you good luck and say good bye
 function goodBye() {
   botAnswer(`Have fun with your new slytherin friends!`);
   setTimeout(() => botAnswer(`And watch out for nargles...`), 1200);
