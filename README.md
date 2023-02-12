@@ -1,12 +1,12 @@
 # Project Name
 
-Replace this readme with your own information about your project.
+Technigo project: Chatbot
 
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+The assignment was to create a chatbot in order to learn the fundamental syntax and concepts of JavaScript.
 
 ## The problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+Since this was my first experience with JavaScript it was challenging to understand how all the parts of the code were connected and how to activate one bot-reply after another. I decided to make it quite simple just to understand and learn the basics.
 
 ## View it live
 
